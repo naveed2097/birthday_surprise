@@ -16,107 +16,104 @@ body {
     align-items: center;
     position: relative;
 
-    /* Romantic animated night gradient */
-    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-    background-size: 400% 400%;
-    animation: gradientMove 15s ease infinite;
+    /* Soft romantic night gradient */
+    background: linear-gradient(135deg, #1a1a40, #2b1055, #3a0ca3);
+    background-size: 300% 300%;
+    animation: gradientMove 20s ease infinite;
 
     color: white;
     text-align: center;
 }
 
-/* Animated gradient */
+/* Slow gradient movement */
 @keyframes gradientMove {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-/* Twinkling stars */
+/* Soft twinkling stars */
 body::before {
     content: "";
     position: absolute;
     width: 100%;
     height: 100%;
     background-image:
-        radial-gradient(2px 2px at 20% 30%, white, transparent),
-        radial-gradient(2px 2px at 70% 80%, white, transparent),
-        radial-gradient(1.5px 1.5px at 40% 60%, white, transparent),
-        radial-gradient(2px 2px at 90% 20%, white, transparent),
-        radial-gradient(1.5px 1.5px at 10% 90%, white, transparent);
+        radial-gradient(2px 2px at 25% 35%, white, transparent),
+        radial-gradient(2px 2px at 75% 70%, white, transparent),
+        radial-gradient(1.5px 1.5px at 50% 50%, white, transparent);
     background-repeat: repeat;
-    animation: twinkle 4s infinite alternate;
+    animation: twinkle 6s infinite alternate;
+    opacity: 0.6;
     z-index: 0;
 }
 
 @keyframes twinkle {
     from { opacity: 0.4; }
-    to { opacity: 1; }
+    to { opacity: 0.8; }
 }
 
-/* Romantic glass card */
+/* Romantic card */
 .card {
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(15px);
-    padding: 50px;
-    border-radius: 30px;
-    box-shadow: 0 0 60px rgba(255, 0, 150, 0.6);
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 0 30px rgba(255, 105, 180, 0.4);
     z-index: 2;
-    border: 1px solid rgba(255,255,255,0.3);
 }
 
 h1 {
-    font-size: 3em;
-    margin-bottom: 15px;
-    text-shadow: 0 0 15px #ff4da6, 0 0 35px #ff0080;
+    font-size: 2.8em;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px #ff69b4;
 }
 
 p {
-    font-size: 1.4em;
+    font-size: 1.3em;
     line-height: 1.6;
 }
 
 .cake {
-    font-size: 4em;
-    animation: bounce 1.5s infinite;
-    filter: drop-shadow(0 0 15px #ff69b4);
+    font-size: 3.5em;
+    animation: bounce 2s infinite;
 }
 
 @keyframes bounce {
     0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
+    50% { transform: translateY(-10px); }
 }
 
-/* Floating hearts */
+/* Floating hearts (slower & softer) */
 .heart {
     position: absolute;
-    font-size: 24px;
-    animation: floatUp 8s linear infinite;
-    color: #ff4da6;
-    text-shadow: 0 0 15px #ff1493;
+    font-size: 22px;
+    animation: floatUp 10s linear infinite;
+    color: #ff69b4;
+    opacity: 0.8;
 }
 
 @keyframes floatUp {
-    0% { transform: translateY(100vh); opacity: 1; }
+    0% { transform: translateY(100vh); opacity: 0.8; }
     100% { transform: translateY(-10vh); opacity: 0; }
 }
 
-/* Enhanced fireworks */
+/* Minimal fireworks (soft glow, smaller) */
 .firework {
     position: absolute;
-    width: 8px;
-    height: 8px;
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
-    animation: explode 1.5s ease-out forwards;
-    box-shadow: 0 0 20px currentColor, 0 0 40px currentColor;
+    animation: explode 1.2s ease-out forwards;
+    box-shadow: 0 0 10px currentColor;
+    opacity: 0.7;
 }
 
 @keyframes explode {
-    from { transform: scale(0); opacity: 1; }
-    to { transform: scale(8); opacity: 0; }
+    from { transform: scale(0); opacity: 0.8; }
+    to { transform: scale(4); opacity: 0; }
 }
 </style>
-
 </head>
 
 <body>
@@ -153,36 +150,15 @@ setInterval(() => {
     heart.className = "heart";
     heart.innerHTML = "❤️";
     heart.style.left = Math.random() * window.innerWidth + "px";
-    heart.style.fontSize = (20 + Math.random()*20) + "px";
     document.body.appendChild(heart);
 
     setTimeout(() => {
         heart.remove();
-    }, 6000);
-}, 500);
+    }, 10000);
+}, 900);
 
-/* Fireworks */
+/* Reduced Fireworks (slower) */
 function createFirework(x, y) {
-    for(let i=0;i<20;i++){
+    for(let i=0;i<12;i++){
         const particle = document.createElement("div");
-        particle.className = "firework";
-        particle.style.background = ["#ff0","#ff4e50","#00f","#fff","#0f0"][Math.floor(Math.random()*5)];
-        particle.style.left = x + "px";
-        particle.style.top = y + "px";
-        document.body.appendChild(particle);
-
-        setTimeout(() => particle.remove(), 1500);
-    }
-}
-
-setInterval(() => {
-    createFirework(
-        Math.random() * window.innerWidth,
-        Math.random() * window.innerHeight
-    );
-}, 1000);
-
-</script>
-
-</body>
-</html>
+        p
