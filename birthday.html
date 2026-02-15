@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday My Love ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    overflow: hidden;
+    height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ff4e50, #fc913a, #f9d423);
+    color: white;
+    text-align: center;
+}
+
+/* Card */
+.card {
+    background: rgba(0,0,0,0.4);
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 0 40px rgba(255,255,255,0.4);
+    z-index: 2;
+}
+
+h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.3em;
+}
+
+.cake {
+    font-size: 4em;
+    animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* Floating hearts */
+.heart {
+    position: absolute;
+    font-size: 20px;
+    animation: floatUp 6s linear infinite;
+    color: red;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(100vh); opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
+}
+
+/* Firework particles */
+.firework {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    animation: explode 1.5s ease-out forwards;
+}
+
+@keyframes explode {
+    from { transform: scale(0); opacity: 1; }
+    to { transform: scale(6); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>🎉 Happy Birthday My Love ❤️</h1>
+    <p>You are the most beautiful part of my life 💖<br>
+    I’m so lucky to have you 💕</p>
+    <div class="cake">🎂</div>
+</div>
+
+<!-- Background Music -->
+<audio autoplay loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+/* Floating Hearts */
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.fontSize = (20 + Math.random()*20) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}, 500);
+
+/* Fireworks */
+function createFirework(x, y) {
+    for(let i=0;i<20;i++){
+        const particle = document.createElement("div");
+        particle.className = "firework";
+        particle.style.background = ["#ff0","#ff4e50","#00f","#fff","#0f0"][Math.floor(Math.random()*5)];
+        particle.style.left = x + "px";
+        particle.style.top = y + "px";
+        document.body.appendChild(particle);
+
+        setTimeout(() => particle.remove(), 1500);
+    }
+}
+
+setInterval(() => {
+    createFirework(
+        Math.random() * window.innerWidth,
+        Math.random() * window.innerHeight
+    );
+}, 1000);
+
+</script>
+
+</body>
+</html>
