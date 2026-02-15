@@ -16,88 +16,70 @@ body {
     align-items: center;
     position: relative;
 
-    /* Romantic night gradient */
-    background: linear-gradient(135deg, #1a1a40, #2b1055, #3a0ca3);
-    background-size: 300% 300%;
-    animation: gradientMove 20s ease infinite;
-
+    /* Smooth romantic night gradient */
+    background: linear-gradient(135deg, #1e1e3f, #2c2c6c);
     color: white;
     text-align: center;
 }
 
-/* Slow gradient animation */
-@keyframes gradientMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* ⭐ Twinkling stars layer */
+/* Subtle static stars (no animation = no flashing) */
 body::before {
     content: "";
     position: absolute;
     width: 100%;
     height: 100%;
     background-image:
-        radial-gradient(2px 2px at 10% 20%, white, transparent),
-        radial-gradient(2px 2px at 30% 80%, white, transparent),
-        radial-gradient(1.5px 1.5px at 50% 40%, white, transparent),
-        radial-gradient(2px 2px at 70% 60%, white, transparent),
-        radial-gradient(1.5px 1.5px at 90% 30%, white, transparent),
-        radial-gradient(2px 2px at 40% 10%, white, transparent);
+        radial-gradient(1px 1px at 20% 30%, white, transparent),
+        radial-gradient(1px 1px at 60% 70%, white, transparent),
+        radial-gradient(1px 1px at 80% 40%, white, transparent),
+        radial-gradient(1px 1px at 40% 80%, white, transparent),
+        radial-gradient(1px 1px at 75% 15%, white, transparent);
     background-repeat: repeat;
-    animation: twinkle 5s infinite alternate;
-    opacity: 0.7;
+    opacity: 0.5;
     z-index: 0;
 }
 
-@keyframes twinkle {
-    from { opacity: 0.4; }
-    to { opacity: 0.9; }
-}
-
-/* Romantic glass card */
+/* Elegant card (no glow, no shadow halo) */
 .card {
     background: rgba(255,255,255,0.08);
-    backdrop-filter: blur(10px);
     padding: 40px;
-    border-radius: 25px;
-    box-shadow: 0 0 25px rgba(255, 105, 180, 0.4);
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.2);
     z-index: 2;
+    max-width: 500px;
 }
 
 h1 {
-    font-size: 2.8em;
+    font-size: 2.5em;
     margin-bottom: 10px;
-    text-shadow: 0 0 10px #ff69b4;
 }
 
 p {
-    font-size: 1.3em;
+    font-size: 1.2em;
     line-height: 1.6;
 }
 
 .cake {
-    font-size: 3.5em;
-    animation: bounce 2s infinite;
+    font-size: 3em;
+    animation: bounce 2.5s infinite;
 }
 
 @keyframes bounce {
     0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    50% { transform: translateY(-8px); }
 }
 
-/* 💖 Floating hearts */
+/* Soft floating hearts */
 .heart {
     position: absolute;
-    font-size: 22px;
-    animation: floatUp 10s linear infinite;
+    font-size: 20px;
+    animation: floatUp 12s linear infinite;
     color: #ff69b4;
-    opacity: 0.8;
+    opacity: 0.7;
 }
 
 @keyframes floatUp {
-    0% { transform: translateY(100vh); opacity: 0.8; }
+    0% { transform: translateY(100vh); opacity: 0.7; }
     100% { transform: translateY(-10vh); opacity: 0; }
 }
 </style>
@@ -141,8 +123,8 @@ setInterval(() => {
 
     setTimeout(() => {
         heart.remove();
-    }, 10000);
-}, 900);
+    }, 12000);
+}, 1000);
 
 </script>
 
