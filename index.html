@@ -14,8 +14,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 
-    /* Romantic night sky gradient */
+    /* Romantic animated night gradient */
     background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
     background-size: 400% 400%;
     animation: gradientMove 15s ease infinite;
@@ -24,14 +25,14 @@ body {
     text-align: center;
 }
 
-/* Moving gradient animation */
+/* Animated gradient */
 @keyframes gradientMove {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-/* ✨ Star Layer */
+/* Twinkling stars */
 body::before {
     content: "";
     position: absolute;
@@ -53,7 +54,7 @@ body::before {
     to { opacity: 1; }
 }
 
-/* Romantic Glass Card */
+/* Romantic glass card */
 .card {
     background: rgba(255,255,255,0.1);
     backdrop-filter: blur(15px);
@@ -100,7 +101,7 @@ p {
     100% { transform: translateY(-10vh); opacity: 0; }
 }
 
-/* ✨ Enhanced Fireworks */
+/* Enhanced fireworks */
 .firework {
     position: absolute;
     width: 8px;
@@ -116,16 +117,16 @@ p {
 }
 </style>
 
-
 </head>
 
 <body>
 
-
 <div class="card">
     <h1>🎉 Happy Birthday My Love ❤️</h1>
-    <p>You are the most beautiful part of my life 💖<br>
-    I’m so lucky to have you 💕</p>
+    <p>
+        You are the most beautiful part of my life 💖<br>
+        I’m so lucky to have you 💕
+    </p>
     <div class="cake">🎂</div>
 </div>
 
@@ -135,16 +136,14 @@ p {
 </audio>
 
 <script>
-    const music = document.getElementById("bgMusic");
+const music = document.getElementById("bgMusic");
 
-    document.addEventListener("click", function () {
-        music.play().catch(function(error) {
-            console.log("Playback prevented:", error);
-        });
-    }, { once: true });
+document.addEventListener("click", function () {
+    music.play().catch(function(error) {
+        console.log("Playback prevented:", error);
+    });
+}, { once: true });
 </script>
-
-
 
 <script>
 
@@ -187,7 +186,3 @@ setInterval(() => {
 
 </body>
 </html>
-
-
-
-
