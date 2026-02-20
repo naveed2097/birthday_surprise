@@ -14,11 +14,11 @@ body {
     background: linear-gradient(135deg, #1e1b4b, #3b0764, #7e22ce);
     color: white;
     text-align: center;
-    position: relative;
 }
 
-/* Center content */
-.container {
+/* Hide content initially */
+#mainContent {
+    display: none;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -36,17 +36,17 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
     font-size: 2em;
     letter-spacing: 2px;
+    z-index: 99999;
     cursor: pointer;
     animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
-    0% { opacity: 0.7; }
+    0% { opacity: 0.6; }
     50% { opacity: 1; }
-    100% { opacity: 0.7; }
+    100% { opacity: 0.6; }
 }
 
 /* Card */
@@ -101,7 +101,8 @@ p {
     Tap to Enter ❤️
 </div>
 
-<div class="container">
+<!-- Main Content -->
+<div id="mainContent">
     <div class="card">
         <h1>Happy Birthday to the most beautiful soul, Supritha HC 💐❤️</h1>
         <p>
@@ -120,18 +121,23 @@ p {
 </audio>
 
 <script>
-const music = document.getElementById("bgMusic");
-const intro = document.getElementById("introScreen");
+document.addEventListener("DOMContentLoaded", function() {
 
-intro.addEventListener("click", function () {
-    music.play().catch(function(error) {
-        console.log("Playback prevented:", error);
+    const music = document.getElementById("bgMusic");
+    const intro = document.getElementById("introScreen");
+    const main = document.getElementById("mainContent");
+
+    intro.addEventListener("click", function() {
+
+        intro.style.display = "none";
+        main.style.display = "flex";
+
+        music.play().catch(function(error) {
+            console.log("Playback prevented:", error);
+        });
+
     });
 
-    intro.style.opacity = "0";
-    setTimeout(() => {
-        intro.style.display = "none";
-    }, 800);
 });
 </script>
 
