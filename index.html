@@ -21,7 +21,7 @@ body {
     color: white;
 }
 
-/* Moving gradient */
+/* Moving background */
 @keyframes gradientMove {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
@@ -45,7 +45,6 @@ body {
 
 #intro h1 {
     font-size: 2em;
-    opacity: 0.9;
     animation: pulse 2s infinite;
 }
 
@@ -71,7 +70,7 @@ body::before {
     z-index: 0;
 }
 
-/* Main Card */
+/* Card */
 .card {
     background: rgba(255,255,255,0.07);
     backdrop-filter: blur(10px);
@@ -119,17 +118,29 @@ h1 {
     50% { transform: translateY(-6px); }
 }
 
-/* Roses & Hearts */
-.petal {
+/* Falling elements */
+.falling {
     position: absolute;
-    font-size: 26px; /* Increased size */
     animation: fall linear infinite;
-    opacity: 0.8;
+    opacity: 0.9;
+}
+
+.rose {
+    font-size: 26px;
+}
+
+.heart {
+    font-size: 32px;
+    text-shadow: 0 0 10px rgba(255,0,120,0.7);
 }
 
 @keyframes fall {
-    0% { transform: translateY(-10vh); }
-    100% { transform: translateY(110vh); }
+    0% { 
+        transform: translateY(-10vh) translateX(0);
+    }
+    100% { 
+        transform: translateY(110vh) translateX(30px);
+    }
 }
 </style>
 </head>
@@ -183,18 +194,27 @@ intro.addEventListener("click", () => {
 });
 
 /* Falling Roses + Hearts */
-const symbols = ["🌹", "❤️", "💖"];
-
 setInterval(() => {
-    const petal = document.createElement("div");
-    petal.className = "petal";
-    petal.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
-    petal.style.left = Math.random() * window.innerWidth + "px";
-    petal.style.animationDuration = (6 + Math.random() * 4) + "s";
-    document.body.appendChild(petal);
+    const element = document.createElement("div");
+    element.classList.add("falling");
+
+    const isHeart = Math.random() > 0.5;
+
+    if (isHeart) {
+        element.classList.add("heart");
+        element.innerHTML = Math.random() > 0.5 ? "❤️" : "💖";
+    } else {
+        element.classList.add("rose");
+        element.innerHTML = "🌹";
+    }
+
+    element.style.left = Math.random() * window.innerWidth + "px";
+    element.style.animationDuration = (6 + Math.random() * 4) + "s";
+
+    document.body.appendChild(element);
 
     setTimeout(() => {
-        petal.remove();
+        element.remove();
     }, 10000);
 }, 700);
 </script>
