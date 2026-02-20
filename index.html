@@ -19,17 +19,42 @@ body {
     background-size: 200% 200%;
     animation: gradientMove 15s ease infinite;
     color: white;
-    text-align: center;
 }
 
-/* Smooth moving gradient */
+/* Moving gradient */
 @keyframes gradientMove {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-/* Soft stars */
+/* Intro Screen */
+#intro {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #0d0d25;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 10;
+    cursor: pointer;
+    transition: opacity 1.5s ease;
+}
+
+#intro h1 {
+    font-size: 2em;
+    opacity: 0.9;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%,100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+/* Stars */
 body::before {
     content: "";
     position: absolute;
@@ -46,50 +71,41 @@ body::before {
     z-index: 0;
 }
 
-/* Premium glass card */
+/* Main Card */
 .card {
     background: rgba(255,255,255,0.07);
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(10px);
     padding: 50px;
     border-radius: 25px;
     border: 1px solid rgba(255,255,255,0.2);
     z-index: 2;
     max-width: 650px;
+    text-align: center;
     opacity: 0;
     transform: translateY(30px);
-    animation: fadeUp 2s ease forwards;
+    transition: 2s ease;
 }
 
-@keyframes fadeUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.card.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 h1 {
-    font-size: 2.3em;
+    font-size: 2.2em;
     margin-bottom: 20px;
     line-height: 1.4;
 }
 
-/* Elegant glowing name */
 .name {
     color: #ffb6f9;
     text-shadow: 0 0 8px rgba(255,182,249,0.6);
 }
 
-/* Paragraph fade delay */
-p {
+#message {
     font-size: 1.2em;
     line-height: 1.8;
-    opacity: 0;
-    animation: fadeText 3s ease forwards;
-    animation-delay: 1.5s;
-}
-
-@keyframes fadeText {
-    to { opacity: 1; }
+    min-height: 120px;
 }
 
 .cake {
@@ -103,68 +119,83 @@ p {
     50% { transform: translateY(-6px); }
 }
 
-/* Floating hearts */
-.heart {
+/* Rose petals */
+.petal {
     position: absolute;
-    font-size: 20px;
-    animation: floatUp 12s linear infinite;
-    color: #ff69b4;
-    opacity: 0.6;
+    font-size: 18px;
+    animation: fall linear infinite;
+    opacity: 0.7;
 }
 
-@keyframes floatUp {
-    0% { transform: translateY(100vh); opacity: 0.6; }
-    100% { transform: translateY(-10vh); opacity: 0; }
+@keyframes fall {
+    0% { transform: translateY(-10vh); }
+    100% { transform: translateY(110vh); }
 }
 </style>
 </head>
 
 <body>
 
-<div class="card">
+<div id="intro">
+    <h1>✨ Tap to Enter ✨</h1>
+</div>
+
+<div class="card" id="card">
     <h1>
         🎉 Happy Birthday to the most beautiful soul,<br>
         <span class="name">Supritha HC 💐</span>
     </h1>
 
-    <p>
-        Your smile is my favorite sight, your laugh is my favorite sound,
-        and your love is my greatest gift.<br><br>
-        I hope today is filled with all the joy, love,
-        and surprises you deserve ❤️
-    </p>
-
+    <div id="message"></div>
     <div class="cake">🎂</div>
 </div>
 
-<!-- Background Music (UNCHANGED) -->
+<!-- Music (UNCHANGED FILE NAME) -->
 <audio id="bgMusic" loop>
     <source src="onde-usirente-pendujattcomse_akTP0b14.mp3" type="audio/mpeg">
 </audio>
 
 <script>
+const intro = document.getElementById("intro");
+const card = document.getElementById("card");
 const music = document.getElementById("bgMusic");
+const message = document.getElementById("message");
 
-document.addEventListener("click", function () {
-    music.play().catch(function(error) {
-        console.log("Playback prevented:", error);
-    });
-}, { once: true });
-</script>
+const text = "Your smile is my favorite sight, your laugh is my favorite sound, and your love is my greatest gift.\n\nI hope today is filled with all the joy, love, and surprises you deserve ❤️";
 
-<script>
-/* Floating Hearts */
+let index = 0;
+
+function typeWriter() {
+    if (index < text.length) {
+        message.innerHTML += text.charAt(index) === "\n" ? "<br><br>" : text.charAt(index);
+        index++;
+        setTimeout(typeWriter, 40);
+    }
+}
+
+intro.addEventListener("click", () => {
+    intro.style.opacity = "0";
+    setTimeout(() => {
+        intro.style.display = "none";
+        card.classList.add("show");
+        music.play();
+        typeWriter();
+    }, 1500);
+});
+
+/* Falling rose petals */
 setInterval(() => {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "❤️";
-    heart.style.left = Math.random() * window.innerWidth + "px";
-    document.body.appendChild(heart);
+    const petal = document.createElement("div");
+    petal.className = "petal";
+    petal.innerHTML = "🌹";
+    petal.style.left = Math.random() * window.innerWidth + "px";
+    petal.style.animationDuration = (5 + Math.random() * 5) + "s";
+    document.body.appendChild(petal);
 
     setTimeout(() => {
-        heart.remove();
-    }, 12000);
-}, 1000);
+        petal.remove();
+    }, 10000);
+}, 800);
 </script>
 
 </body>
