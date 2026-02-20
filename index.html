@@ -21,14 +21,13 @@ body {
     color: white;
 }
 
-/* Moving background */
 @keyframes gradientMove {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-/* Intro Screen */
+/* Intro */
 #intro {
     position: absolute;
     width: 100%;
@@ -37,7 +36,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
     z-index: 10;
     cursor: pointer;
     transition: opacity 1.5s ease;
@@ -62,12 +60,9 @@ body::before {
     background-image:
         radial-gradient(1px 1px at 20% 30%, white, transparent),
         radial-gradient(1px 1px at 60% 70%, white, transparent),
-        radial-gradient(1px 1px at 80% 40%, white, transparent),
-        radial-gradient(1px 1px at 40% 80%, white, transparent),
-        radial-gradient(1px 1px at 75% 15%, white, transparent);
+        radial-gradient(1px 1px at 80% 40%, white, transparent);
     background-repeat: repeat;
     opacity: 0.4;
-    z-index: 0;
 }
 
 /* Card */
@@ -77,12 +72,13 @@ body::before {
     padding: 50px;
     border-radius: 25px;
     border: 1px solid rgba(255,255,255,0.2);
-    z-index: 2;
     max-width: 650px;
     text-align: center;
     opacity: 0;
     transform: translateY(30px);
     transition: 2s ease;
+    position: relative;
+    z-index: 2;
 }
 
 .card.show {
@@ -98,7 +94,7 @@ h1 {
 
 .name {
     color: #ffb6f9;
-    text-shadow: 0 0 8px rgba(255,182,249,0.6);
+    text-shadow: 0 0 10px rgba(255,182,249,0.7);
 }
 
 #message {
@@ -118,29 +114,35 @@ h1 {
     50% { transform: translateY(-6px); }
 }
 
-/* Falling elements */
+/* Falling roses & hearts */
 .falling {
     position: absolute;
     animation: fall linear infinite;
     opacity: 0.9;
 }
 
-.rose {
-    font-size: 26px;
-}
-
+.rose { font-size: 26px; }
 .heart {
     font-size: 32px;
     text-shadow: 0 0 10px rgba(255,0,120,0.7);
 }
 
 @keyframes fall {
-    0% { 
-        transform: translateY(-10vh) translateX(0);
-    }
-    100% { 
-        transform: translateY(110vh) translateX(30px);
-    }
+    0% { transform: translateY(-10vh); }
+    100% { transform: translateY(110vh); }
+}
+
+/* Sparkle */
+.sparkle {
+    position: absolute;
+    font-size: 18px;
+    animation: sparkleAnim 1.5s ease forwards;
+    pointer-events: none;
+}
+
+@keyframes sparkleAnim {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(2); }
 }
 </style>
 </head>
@@ -175,11 +177,26 @@ const text = "Your smile is my favorite sight, your laugh is my favorite sound, 
 
 let index = 0;
 
+function sparkleBurst() {
+    for (let i = 0; i < 25; i++) {
+        const spark = document.createElement("div");
+        spark.className = "sparkle";
+        spark.innerHTML = "✨";
+        spark.style.left = (window.innerWidth/2 + (Math.random()*200 - 100)) + "px";
+        spark.style.top = (window.innerHeight/2 + (Math.random()*200 - 100)) + "px";
+        document.body.appendChild(spark);
+
+        setTimeout(() => spark.remove(), 1500);
+    }
+}
+
 function typeWriter() {
     if (index < text.length) {
         message.innerHTML += text.charAt(index) === "\n" ? "<br><br>" : text.charAt(index);
         index++;
         setTimeout(typeWriter, 40);
+    } else {
+        sparkleBurst(); // trigger sparkle when done
     }
 }
 
@@ -193,7 +210,7 @@ intro.addEventListener("click", () => {
     }, 1500);
 });
 
-/* Falling Roses + Hearts */
+/* Falling elements */
 setInterval(() => {
     const element = document.createElement("div");
     element.classList.add("falling");
@@ -212,10 +229,7 @@ setInterval(() => {
     element.style.animationDuration = (6 + Math.random() * 4) + "s";
 
     document.body.appendChild(element);
-
-    setTimeout(() => {
-        element.remove();
-    }, 10000);
+    setTimeout(() => element.remove(), 10000);
 }, 700);
 </script>
 
