@@ -11,27 +11,42 @@ body {
     overflow: hidden;
     height: 100vh;
     font-family: 'Segoe UI', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background: linear-gradient(135deg, #1e1b4b, #3b0764, #7e22ce);
     color: white;
     text-align: center;
+    position: relative;
+}
+
+/* Center content */
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Tap Screen */
 #introScreen {
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: linear-gradient(135deg, #1e1b4b, #3b0764, #7e22ce);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 999;
-    cursor: pointer;
-    font-size: 1.8em;
+    z-index: 9999;
+    font-size: 2em;
     letter-spacing: 2px;
-    transition: opacity 1s ease;
+    cursor: pointer;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.7; }
+    50% { opacity: 1; }
+    100% { opacity: 0.7; }
 }
 
 /* Card */
@@ -40,22 +55,22 @@ body {
     padding: 40px;
     border-radius: 25px;
     box-shadow: 0 0 40px rgba(255,192,203,0.3);
-    z-index: 2;
     backdrop-filter: blur(8px);
+    max-width: 90%;
 }
 
 h1 {
-    font-size: 2.2em;
+    font-size: 2em;
     margin-bottom: 15px;
 }
 
 p {
-    font-size: 1.2em;
+    font-size: 1.1em;
     line-height: 1.6em;
 }
 
 .cake {
-    font-size: 3.5em;
+    font-size: 3em;
     margin-top: 15px;
     animation: bounce 2s infinite;
 }
@@ -81,20 +96,22 @@ p {
 
 <body>
 
-<!-- Tap to Enter Screen -->
+<!-- Tap Screen -->
 <div id="introScreen">
     Tap to Enter ❤️
 </div>
 
-<div class="card">
-    <h1>Happy Birthday to the most beautiful soul, Supritha HC 💐❤️</h1>
-    <p>
-        Your smile is my favorite sight, your laugh is my favorite sound,  
-        and your love is my greatest gift.  
-        I hope today is filled with all the joy, love,  
-        and surprises you deserve ❤️💖🌹
-    </p>
-    <div class="cake">🎂</div>
+<div class="container">
+    <div class="card">
+        <h1>Happy Birthday to the most beautiful soul, Supritha HC 💐❤️</h1>
+        <p>
+            Your smile is my favorite sight, your laugh is my favorite sound,
+            and your love is my greatest gift.
+            I hope today is filled with all the joy, love,
+            and surprises you deserve ❤️💖🌹
+        </p>
+        <div class="cake">🎂</div>
+    </div>
 </div>
 
 <!-- Background Music -->
@@ -114,13 +131,12 @@ intro.addEventListener("click", function () {
     intro.style.opacity = "0";
     setTimeout(() => {
         intro.style.display = "none";
-    }, 1000);
+    }, 800);
 });
 </script>
 
 <script>
-
-/* Floating Sharp Hearts & Roses (SVG – No Blur) */
+/* Floating Hearts & Roses (Sharp SVG) */
 
 const heartImg = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23ff4d6d' d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 6 4 4 6.5 4c1.74 0 3.41 1 4.22 2.44C11.59 5 13.26 4 15 4 17.5 4 19.5 6 19.5 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/></svg>";
 
@@ -139,7 +155,6 @@ setInterval(() => {
         item.remove();
     }, 8000);
 }, 1200);
-
 </script>
 
 </body>
