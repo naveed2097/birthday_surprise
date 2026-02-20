@@ -15,12 +15,21 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
-    background: linear-gradient(135deg, #1e1e3f, #2c2c6c);
+    background: linear-gradient(135deg, #141430, #2b2b63, #1a1a3a);
+    background-size: 200% 200%;
+    animation: gradientMove 15s ease infinite;
     color: white;
     text-align: center;
 }
 
-/* Soft static stars (no flashing) */
+/* Smooth moving gradient */
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Soft stars */
 body::before {
     content: "";
     position: absolute;
@@ -33,39 +42,65 @@ body::before {
         radial-gradient(1px 1px at 40% 80%, white, transparent),
         radial-gradient(1px 1px at 75% 15%, white, transparent);
     background-repeat: repeat;
-    opacity: 0.5;
+    opacity: 0.4;
     z-index: 0;
 }
 
-/* Romantic card */
+/* Premium glass card */
 .card {
-    background: rgba(255,255,255,0.08);
-    padding: 40px;
-    border-radius: 20px;
+    background: rgba(255,255,255,0.07);
+    backdrop-filter: blur(8px);
+    padding: 50px;
+    border-radius: 25px;
     border: 1px solid rgba(255,255,255,0.2);
     z-index: 2;
-    max-width: 600px;
+    max-width: 650px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 2s ease forwards;
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 h1 {
-    font-size: 2.2em;
+    font-size: 2.3em;
     margin-bottom: 20px;
+    line-height: 1.4;
 }
 
+/* Elegant glowing name */
+.name {
+    color: #ffb6f9;
+    text-shadow: 0 0 8px rgba(255,182,249,0.6);
+}
+
+/* Paragraph fade delay */
 p {
     font-size: 1.2em;
     line-height: 1.8;
+    opacity: 0;
+    animation: fadeText 3s ease forwards;
+    animation-delay: 1.5s;
+}
+
+@keyframes fadeText {
+    to { opacity: 1; }
 }
 
 .cake {
     font-size: 3em;
-    margin-top: 20px;
-    animation: bounce 2.5s infinite;
+    margin-top: 25px;
+    animation: bounce 3s infinite;
 }
 
 @keyframes bounce {
     0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
+    50% { transform: translateY(-6px); }
 }
 
 /* Floating hearts */
@@ -74,11 +109,11 @@ p {
     font-size: 20px;
     animation: floatUp 12s linear infinite;
     color: #ff69b4;
-    opacity: 0.7;
+    opacity: 0.6;
 }
 
 @keyframes floatUp {
-    0% { transform: translateY(100vh); opacity: 0.7; }
+    0% { transform: translateY(100vh); opacity: 0.6; }
     100% { transform: translateY(-10vh); opacity: 0; }
 }
 </style>
@@ -87,13 +122,18 @@ p {
 <body>
 
 <div class="card">
-    <h1>🎉 Happy Birthday to the most beautiful soul, Supritha HC 💐</h1>
+    <h1>
+        🎉 Happy Birthday to the most beautiful soul,<br>
+        <span class="name">Supritha HC 💐</span>
+    </h1>
+
     <p>
-        Your smile is my favorite sight, your laugh is my favorite sound,<br>
+        Your smile is my favorite sight, your laugh is my favorite sound,
         and your love is my greatest gift.<br><br>
-        I hope today is filled with all the joy, love,<br>
+        I hope today is filled with all the joy, love,
         and surprises you deserve ❤️
     </p>
+
     <div class="cake">🎂</div>
 </div>
 
