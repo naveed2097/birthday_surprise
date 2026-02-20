@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday My Love ❤️</title>
+<title>Happy Birthday Supritha ❤️</title>
 
 <style>
 body {
@@ -15,14 +15,12 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
-
-    /* Smooth romantic night gradient */
     background: linear-gradient(135deg, #1e1e3f, #2c2c6c);
     color: white;
     text-align: center;
 }
 
-/* Subtle static stars (no animation = no flashing) */
+/* Soft static stars (no flashing) */
 body::before {
     content: "";
     position: absolute;
@@ -39,28 +37,29 @@ body::before {
     z-index: 0;
 }
 
-/* Elegant card (no glow, no shadow halo) */
+/* Romantic card */
 .card {
     background: rgba(255,255,255,0.08);
     padding: 40px;
     border-radius: 20px;
     border: 1px solid rgba(255,255,255,0.2);
     z-index: 2;
-    max-width: 500px;
+    max-width: 600px;
 }
 
 h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
+    font-size: 2.2em;
+    margin-bottom: 20px;
 }
 
 p {
     font-size: 1.2em;
-    line-height: 1.6;
+    line-height: 1.8;
 }
 
 .cake {
     font-size: 3em;
+    margin-top: 20px;
     animation: bounce 2.5s infinite;
 }
 
@@ -69,7 +68,7 @@ p {
     50% { transform: translateY(-8px); }
 }
 
-/* Soft floating hearts */
+/* Floating hearts */
 .heart {
     position: absolute;
     font-size: 20px;
@@ -88,15 +87,17 @@ p {
 <body>
 
 <div class="card">
-    <h1>🎉 Happy Birthday My Love ❤️</h1>
+    <h1>🎉 Happy Birthday to the most beautiful soul, Supritha HC 💐</h1>
     <p>
-        You are the most beautiful part of my life 💖<br>
-        I’m so lucky to have you 💕
+        Your smile is my favorite sight, your laugh is my favorite sound,<br>
+        and your love is my greatest gift.<br><br>
+        I hope today is filled with all the joy, love,<br>
+        and surprises you deserve ❤️
     </p>
     <div class="cake">🎂</div>
 </div>
 
-<!-- Background Music -->
+<!-- Background Music (UNCHANGED) -->
 <audio id="bgMusic" loop>
     <source src="onde-usirente-pendujattcomse_akTP0b14.mp3" type="audio/mpeg">
 </audio>
@@ -112,7 +113,6 @@ document.addEventListener("click", function () {
 </script>
 
 <script>
-
 /* Floating Hearts */
 setInterval(() => {
     const heart = document.createElement("div");
@@ -125,7 +125,6 @@ setInterval(() => {
         heart.remove();
     }, 12000);
 }, 1000);
-
 </script>
 
 </body>
