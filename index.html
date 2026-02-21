@@ -13,10 +13,10 @@ body {
     font-family: 'Segoe UI', sans-serif;
     background: linear-gradient(135deg, #1e1b4b, #3b0764, #7e22ce);
     color: white;
-    text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 /* Tap Overlay */
@@ -59,6 +59,7 @@ h1 {
 p {
     font-size: 1.1em;
     line-height: 1.6em;
+    min-height: 120px;
 }
 
 .cake {
@@ -87,13 +88,8 @@ p {
 </div>
 
 <div class="card">
-    <h1>Happy Birthday to the most beautiful soul, Supritha HC 💐❤️</h1>
-    <p>
-        Your smile is my favorite sight, your laugh is my favorite sound,
-        and your love is my greatest gift.
-        I hope today is filled with all the joy, love,
-        and surprises you deserve ❤️💖🌹
-    </p>
+    <h1 id="title"></h1>
+    <p id="message"></p>
     <div class="cake">🎂</div>
 </div>
 
@@ -102,9 +98,30 @@ p {
 </audio>
 
 <script>
+const fullTitle = "Happy Birthday to the most beautiful soul, Supritha HC 💐❤️";
+const fullMessage = "Your smile is my favorite sight, your laugh is my favorite sound, and your love is my greatest gift. I hope today is filled with all the joy, love, and surprises you deserve ❤️💖🌹";
+
+function typeWriter(element, text, speed = 40) {
+    let i = 0;
+    function typing() {
+        if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(typing, speed);
+        }
+    }
+    typing();
+}
+
 function startExperience() {
     document.getElementById("introScreen").style.display = "none";
     document.getElementById("bgMusic").play();
+
+    typeWriter(document.getElementById("title"), fullTitle, 50);
+
+    setTimeout(() => {
+        typeWriter(document.getElementById("message"), fullMessage, 35);
+    }, 2500);
 }
 </script>
 
